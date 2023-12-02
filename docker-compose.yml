@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  mongo_db:
+    container_name: db_container
+    image: mongo:latest
+    restart: always
+    volumes:
+      - mongo_db:/data/db
+
+  backend:
+    build: .
+    ports:
+      - 3000:3000
+    environment:
+      APP_NAME: LearnDocker
+      PORT: 3000
+      DB_URI: mongodb://mongo_db:27017/dockerlearn
+    depends_on:
+      - mongo_db
+
+  frontend:
+    build: 
+      context: ./frontend
+    ports:
+      - 80:80
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+    depends_on:
+      - backend
+
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #   ports:
+  #     - "8080:80"
+  #   networks:
+  #     - my-network
+  #   depends_on:
+  #     - node-backend
+
+volumes:
+  mongo_db: {}
