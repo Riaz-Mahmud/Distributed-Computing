@@ -1,0 +1,87 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Product Showcase</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Product Showcase</h1>
+
+        <!-- Form for adding a new product -->
+        <form id="addProductForm">
+            <label for="productName">Product Name:</label>
+            <input type="text" id="productName" name="productName" required>
+
+            <label for="productPrice">Product Price:</label>
+            <input type="number" id="productPrice" name="productPrice" required>
+
+            <button type="submit">Add Product</button>
+        </form>
+
+        <ul id="product-list"></ul>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Function to fetch and display products
+            function fetchProducts() {
+
+                // Make a GET request to fetch products
+                $.ajax({
+                    url: 'http://localhost:3000/products',
+                    method: 'GET',
+                    success: function (data) {
+                        console.log(data);
+                        // Display products on page
+                        const productList = $('#product-list');
+                        productList.empty();
+                        data.data.forEach(product => {
+                            productList.append(`<li>${product.title}
+                                [${product.description}]
+                                 - ${product.price}</li>`);
+                        });
+                    },
+                    error: function (error) {
+                        console.error('Error fetching products:', error.responseText);
+                    }
+                });
+
+            }
+
+            // Event listener for the form submission
+            $('#addProductForm').submit(function (event) {
+                event.preventDefault();
+
+                // Get input values
+                const productName = $('#productName').val();
+                const productPrice = $('#productPrice').val();
+                const description = "This is a description";
+
+                // Make a POST request to add a new product
+                $.ajax({
+                    url: 'http://localhost:3000/products',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ title: productName, description, price: parseFloat(productPrice) }),
+                    success: function (data) {
+                        // Product added successfully, fetch and display updated products
+                        fetchProducts();
+                    },
+                    error: function (error) {
+                        console.error('Error adding product:', error.responseText);
+                    }
+                });
+            });
+
+            // Initial fetch and display of products
+            fetchProducts();
+        });
+    </script>
+</body>
+
+</html>
