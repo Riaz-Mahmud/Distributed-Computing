@@ -44,6 +44,8 @@ services:
       DB_URI: mongodb://mongo_db:${DB_PORT}/${DB_NAME}
     depends_on:
       - mongo_db
+    volumes:
+      - ${BACKEND_LOG_DIR-./logs/nodejs}:/logs
 
   frontend:
     build: 

@@ -1,6 +1,6 @@
 FROM nginx:latest
-
-COPY ./index.html /usr/share/nginx/html/index.html
-COPY ./styles.css /usr/share/nginx/html/styles.css
+WORKDIR /usr/share/nginx/html
+COPY ./index.html ./
+COPY ./styles.css ./
 
 EXPOSE 80
