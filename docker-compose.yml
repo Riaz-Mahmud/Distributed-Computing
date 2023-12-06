@@ -42,10 +42,12 @@ services:
       APP_NAME: ${COMPOSE_PROJECT_NAME}
       PORT: ${BACKEND_PORT}
       DB_URI: mongodb://mongo_db:${DB_PORT}/${DB_NAME}
+    command: ["npm", "run", "dev"]
+    volumes:
+      - ${BACKEND_LOG_DIR-./logs/nodejs}:/usr/src/app/logs
+      - ./www/backend/src:/usr/src/app/src
     depends_on:
       - mongo_db
-    volumes:
-      - ${BACKEND_LOG_DIR-./logs/nodejs}:/logs
 
   frontend:
     build: 
@@ -55,6 +57,7 @@ services:
       - 80:80
     volumes:
       - ./www/frontend:/usr/share/nginx/html
+      - ${FRONTEND_LOG_DIR-./logs/nginx}:/var/log/nginx
     depends_on:
       - backend
 

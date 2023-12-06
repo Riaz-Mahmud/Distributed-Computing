@@ -1,11 +1,14 @@
 import express from 'express';
-import webRoutes from './routes/web.js';
+import apiRoutes from './routes/api.js';
 import mongoose from 'mongoose';
 import config from "../config.js";
 import bodyParser from 'body-parser';
-import cors from 'cors'; // Import cors
+import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
+import path from 'path';
+import sessionStore from './helpers/session.js';
+const store = new session.MemoryStore();
 
 const connectToDB = async () => {
     try {
@@ -32,20 +35,37 @@ app.use((req, res, next) => {
 });
 
 app.use(cookieParser());
+
 app.use(session({
     secret: '34SDglr223skolwczsx1578935RIAZER',
-    resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: {
-        secure: false, // Set to true in a production environment with HTTPS
-        maxAge: 7 * 24 * 60 * 60 * 1000 // Session duration is 7 days
-    }
+        secure: false,
+        maxAge: 7 * 24 * 60 * 60 * 1000 // Session duration is 1 days
+    },
+    // store: sessionStore,
+    store,
 }));
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+// Global middleware to set session_id if not already set
+app.use((req, res, next) => {
+    if(req.session.session_id){
+        console.log('previous session: ', req.session.session_id);
+    }else{
+        req.session.session_id = req.sessionID;
+        console.log('new session: ', req.session.session_id);
+    }
+    next();
+});
 
-app.use('/', webRoutes);
+// app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(express.json());
+
+app.use(express.static('storage'));
+app.use('/storage', express.static(path.join(path.resolve(), '/src/storage/')));
+
+app.use('/api', apiRoutes);
 
 await connectToDB();
 

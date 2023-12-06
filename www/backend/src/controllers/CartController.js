@@ -16,14 +16,14 @@ async function shoppingCart(req, res, next) {
                     title: cart.product_id.title,
                     description: cart.product_id.description,
                     price: cart.product_id.price,
+                    image: cart.product_id.image,
                 },
             };
         });
 
         return res.status(200).json({
             status: 200,
-            data: cartItems,
-            total: 100,
+            data: cartItems
         });
     } catch (e) {
         console.error(e);
@@ -36,6 +36,9 @@ async function shoppingCart(req, res, next) {
 // router.post('/add-to-cart', CartController.addToCart);
 async function addToCart(req, res, next) {
     try {
+         
+        const session_id = req.session.session_id;
+        console.log('controller session_id: ', session_id);
 
         // Check if the product exists
         const productIsAvailable = await Cart.findOne({ product_id: req.body.productId });
@@ -49,7 +52,7 @@ async function addToCart(req, res, next) {
             // Get the product ID and session ID from the request body
             cart.product_id = req.body.productId;
             // crate UUId 
-            cart.session_id = req.sessionID;
+            cart.session_id = req.session.session_id;
             await cart.save();
         }
 
