@@ -8,6 +8,7 @@ import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import path from 'path';
 import sessionStore from './helpers/session.js';
+import defaultImageMiddleware from './middlewares/defaultImageMiddleware.js';
 const store = new session.MemoryStore();
 
 const connectToDB = async () => {
@@ -49,12 +50,6 @@ app.use(session({
 
 // Global middleware to set session_id if not already set
 app.use((req, res, next) => {
-    if(req.session.session_id){
-        console.log('previous session: ', req.session.session_id);
-    }else{
-        req.session.session_id = req.sessionID;
-        console.log('new session: ', req.session.session_id);
-    }
     next();
 });
 
@@ -62,8 +57,11 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 app.use(express.json());
 
-app.use(express.static('storage'));
+
 app.use('/storage', express.static(path.join(path.resolve(), '/src/storage/')));
+
+// default image middleware
+app.use('/storage', defaultImageMiddleware);
 
 app.use('/api', apiRoutes);
 

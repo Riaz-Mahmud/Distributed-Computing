@@ -53,11 +53,11 @@ services:
     build: 
       context: ${DOCUMENT_ROOT}/frontend
     container_name: ${COMPOSE_PROJECT_NAME}-frontend
-    ports:
-      - 80:80
     volumes:
-      - ./www/frontend:/usr/share/nginx/html
-      - ${FRONTEND_LOG_DIR-./logs/nginx}:/var/log/nginx
+      - ./www/frontend:/var/www/html
+      - ${FRONTEND_LOG_DIR-./logs/apache}:/var/log/apache2
+    ports:
+      - "80:80"
     depends_on:
       - backend
 

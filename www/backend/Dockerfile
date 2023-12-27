@@ -1,8 +1,7 @@
 FROM node:alpine
 WORKDIR /usr/src/app
 COPY package*.json ./
-RUN npm ci
-RUN npm install forever -g
+RUN npm install
 COPY ./src ./src
 COPY ./config.js ./
 RUN ln -s /usr/src/app/logs /logs

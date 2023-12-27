@@ -1,18 +1,25 @@
 import express from "express";
-import productsController from "../controllers/Products.Controller.js"
-import CartController from "../controllers/CartController.js"
-import uploadHelper from "../helpers/productFileHelper.js"
+import projectsController from "../controllers/ProjectsController.js"
+import skillsController from "../controllers/SkillsController.js"
+import uploadHelper from "../helpers/projectFileHelper.js"
+import validateSkillData from "../middlewares/validateSkillDataMiddleware.js";
+import validateProjectData from "../middlewares/validateProjectDataMiddleware.js";
 const router = express.Router();
 
-//////////////// Products Routes start ////////////////
-router.get('/',  productsController.index);
-router.post('/', uploadHelper.upload.single('image'), productsController.save);
-//////////////// Products Routes end ////////////////
+//////////////// Projects Routes start ////////////////
+router.get('/projects',  projectsController.index);
+router.post('/projects', uploadHelper.upload.single('image'), validateProjectData, projectsController.save);
+router.get('/projects/:id', projectsController.edit);
+router.put('/projects/:id', uploadHelper.upload.single('image'), validateProjectData, projectsController.update);
+router.delete('/projects/:id', projectsController.destroy);
+//////////////// Projects Routes end ////////////////
 
-//////////////// Cart Routes start ////////////////
-router.get('/shopping-cart', CartController.shoppingCart);
-router.post('/add-to-cart', CartController.addToCart);
-router.post('/remove-add-cart', CartController.remove);
-//////////////// Cart Routes end ////////////////
+//////////////// Skills Routes start ////////////////
+router.get('/skills',  skillsController.index);
+router.post('/skills', validateSkillData, skillsController.save);
+router.get('/skills/:id', skillsController.edit);
+router.put('/skills/:id', validateSkillData, skillsController.update);
+router.delete('/skills/:id', skillsController.destroy);
+//////////////// Skills Routes end ////////////////
 
 export default router;

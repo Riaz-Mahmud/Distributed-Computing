@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "forever -w src/index.js --watchDirectory src --minUptime 1000 --spinSleepTime 1000"
+    "dev": "nodemon --inspect src/index.js"
   },
   "author": "",
   "license": "ISC",
