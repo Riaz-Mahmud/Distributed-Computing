@@ -1,5 +1,6 @@
 import express from 'express';
 import apiRoutes from './routes/api.js';
+import webRoutes from './routes/web.js';
 import mongoose from 'mongoose';
 import config from "../config.js";
 import bodyParser from 'body-parser';
@@ -10,6 +11,8 @@ import path from 'path';
 import sessionStore from './helpers/session.js';
 import defaultImageMiddleware from './middlewares/defaultImageMiddleware.js';
 const store = new session.MemoryStore();
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
 
 const connectToDB = async () => {
     try {
@@ -21,6 +24,9 @@ const connectToDB = async () => {
 }
 
 const app = express();
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+app.set("views", join(__dirname, "views"));
 
 // Middleware
 const corsOptions = {
@@ -59,11 +65,12 @@ app.use(express.json());
 
 
 app.use('/storage', express.static(path.join(path.resolve(), '/src/storage/')));
-
 // default image middleware
 app.use('/storage', defaultImageMiddleware);
 
+// Routes
 app.use('/api', apiRoutes);
+app.use(webRoutes);
 
 await connectToDB();
 

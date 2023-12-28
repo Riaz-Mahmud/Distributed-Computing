@@ -4,6 +4,7 @@ import skillsController from "../controllers/SkillsController.js"
 import uploadHelper from "../helpers/projectFileHelper.js"
 import validateSkillData from "../middlewares/validateSkillDataMiddleware.js";
 import validateProjectData from "../middlewares/validateProjectDataMiddleware.js";
+import homeController from "../controllers/HomeController.js";
 const router = express.Router();
 
 //////////////// Projects Routes start ////////////////
@@ -21,5 +22,9 @@ router.get('/skills/:id', skillsController.edit);
 router.put('/skills/:id', validateSkillData, skillsController.update);
 router.delete('/skills/:id', skillsController.destroy);
 //////////////// Skills Routes end ////////////////
+
+//////////////// Home Routes start ////////////////
+router.get('/home',  homeController.index);
+//////////////// Home Routes end ////////////////
 
 export default router;

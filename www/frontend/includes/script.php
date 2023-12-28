@@ -55,7 +55,7 @@
                                         <p class="card-text description" style="font-size: 12px; overflow: hidden; text-overflow: ellipsis; -webkit-line-clamp: 2; -webkit-box-orient: vertical; display: -webkit-box; line-height: 1.5em; max-height: 3em; ">
                                             <b>Desc:</b> ${project.description}
                                         </p>
-                                        <a href="${project.link}" target="_blank" class="btn btn-primary btn-sm" style="width: 100%;">Demo</a>
+                                        <a href="${project.link}" target="_blank" class="btn btn-primary btn-sm" style="width: 100%;">Link</a>
                                     </div>
                                 </div>
                             </div>

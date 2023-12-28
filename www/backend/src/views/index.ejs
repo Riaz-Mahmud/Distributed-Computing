@@ -1,0 +1,32 @@
+<%- include('partials/head', { title: 'Home | Admin Dashboard' }) %>
+
+  <body>
+
+    <%- include("partials/sidebar") %>
+
+      <div class="content">
+        <!-- Main content of your admin dashboard goes here -->
+        <h1>Welcome to the Admin Dashboard</h1>
+
+        <div class="col-md-12 row mt-5">
+          <div class="col-md-3 card m-2 p-2">
+            <h3>Skills</h3>
+            <a href="/skills">
+              <h1 id="skills-count">0</h1>
+            </a>
+          </div>
+
+          <div class="col-md-3 card m-2 p-2">
+            <h3>Projects</h3>
+            <a href="/projects">
+              <h1 id="projects-count">0</h1>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <%- include("partials/script") %>
+      <%- include("partials/indexScripts") %>
+  </body>
+
+  <%- include("partials/footer") %>

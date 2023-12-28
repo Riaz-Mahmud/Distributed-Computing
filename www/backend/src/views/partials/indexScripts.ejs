@@ -1,0 +1,21 @@
+<script>
+    $(document).ready(function () {
+
+        function fetchHomeData(){
+            $.ajax({
+                url: 'http://localhost:3000/api/home',
+                method: 'GET',
+                success: function (data) {
+                    console.log('Home data:', data);
+                    $('#skills-count').html(data.data.skills);
+                    $('#projects-count').html(data.data.projects);
+                },
+                error: function (error) {
+                    console.error('Error fetching home data:', error.responseText);
+                }
+            });
+        }
+
+        fetchHomeData();
+    });
+</script>
