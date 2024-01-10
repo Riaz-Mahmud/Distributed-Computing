@@ -5,5 +5,4 @@ RUN npm install
 COPY ./src ./src
 COPY ./config.js ./
 RUN ln -s /usr/src/app/logs /logs
-# CMD [ "npm", "start"]
 CMD ["npm", "run", "dev"]
