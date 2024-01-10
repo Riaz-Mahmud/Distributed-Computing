@@ -10,7 +10,6 @@ services:
       - 27017:27017
     volumes:
       - mongo_db:/data/db
-      - ${DB_INITDB_DIR-./config/initdb}:/docker-entrypoint-initdb.d
       - ${DB_DATA_DIR-./data/mongodb}:/data/db
       - ${DB_LOG_DIR-./logs/mongodb}:/var/log/mongodb
 
@@ -27,8 +26,6 @@ services:
       ME_CONFIG_BASICAUTH_USERNAME: ${DB_USER}
       ME_CONFIG_BASICAUTH_PASSWORD: ${DB_PASSWORD}
       ME_CONFIG_MONGODB_SERVER: mongo_db
-    volumes:
-      - /sessions
     depends_on:
       - mongo_db
 
