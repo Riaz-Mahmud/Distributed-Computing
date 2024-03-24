@@ -305,6 +305,7 @@
 172.20.0.1 - - [10/Jan/2024:02:19:57 +0000] "GET / HTTP/1.1" 200 1835 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 172.20.0.1 - - [10/Jan/2024:02:20:03 +0000] "GET / HTTP/1.1" 200 1835 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 172.20.0.1 - - [10/Jan/2024:02:20:55 +0000] "-" 408 0 "-" "-"
+<<<<<<< HEAD
 172.31.0.1 - - [18/Jan/2024:15:30:49 +0000] "GET / HTTP/1.1" 200 1835 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 172.31.0.1 - - [18/Jan/2024:15:30:49 +0000] "GET /styles.css HTTP/1.1" 200 689 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 172.31.0.1 - - [18/Jan/2024:15:30:49 +0000] "GET /images/icon.png HTTP/1.1" 304 248 "http://localhost/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
@@ -326,3 +327,5 @@
 172.20.0.1 - - [19/Jan/2024:14:14:47 +0000] "-" 408 0 "-" "-"
 172.21.0.1 - - [19/Jan/2024:15:41:56 +0000] "GET / HTTP/1.1" 200 1835 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 172.21.0.1 - - [19/Jan/2024:15:42:49 +0000] "-" 408 0 "-" "-"
+=======
+>>>>>>> 5303dba45a49c785b6b069cfca92099e2d553a62
