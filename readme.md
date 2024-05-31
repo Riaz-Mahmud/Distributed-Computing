@@ -11,6 +11,15 @@ The portfolio management system comprises the following components, each running
 - **Backend**: A Node.js server responsible for creating REST APIs to interact with the database. It also serves views for managing skills and projects.
 - **Database**: MongoDB is used to store skill and project data.
 
+## View
+![2024-05-31_234156](https://github.com/Riaz-Mahmud/Portfolio-Management-System-using-Docker-Nodejs-React-mongoDB/assets/58476836/27013f2a-58f2-4c6c-9731-6c878d982207)
+
+![2024-05-31_234135](https://github.com/Riaz-Mahmud/Portfolio-Management-System-using-Docker-Nodejs-React-mongoDB/assets/58476836/427155d8-ae78-4d4f-8e09-ad22367795d5)
+
+![2024-05-31_234147](https://github.com/Riaz-Mahmud/Portfolio-Management-System-using-Docker-Nodejs-React-mongoDB/assets/58476836/bce3f3b8-ca54-4661-b85e-7d570c994c5b)
+
+![2024-05-31_234212](https://github.com/Riaz-Mahmud/Portfolio-Management-System-using-Docker-Nodejs-React-mongoDB/assets/58476836/a0b62b76-5894-4126-8bb6-7febae0c940a)
+
 ## Getting Started
 
 To set up the portfolio management system locally, follow these steps:
